@@ -1,0 +1,9 @@
+{
+  "blwAuthApp": {
+    "AuthStatus": {
+      "null": "",
+      "Successs": "Successs",
+      "Fail": "Fail"
+    }
+  }
+}

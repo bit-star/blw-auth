@@ -1,0 +1,28 @@
+{
+  "blwAuthApp": {
+    "live": {
+      "home": {
+        "title": "Lives",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Live",
+        "createOrEditLabel": "Create or edit a Live",
+        "notFound": "No Lives found"
+      },
+      "created": "A new Live is created with identifier {{ param }}",
+      "updated": "A Live is updated with identifier {{ param }}",
+      "deleted": "A Live is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Live {{ id }}?"
+      },
+      "detail": {
+        "title": "Live"
+      },
+      "id": "ID",
+      "name": "Name",
+      "polyvId": "Polyv Id",
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "authLog": "Auth Log"
+    }
+  }
+}

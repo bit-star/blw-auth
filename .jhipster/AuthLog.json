@@ -1,0 +1,40 @@
+{
+  "applications": "*",
+  "changelogDate": "20221107054147",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "auth_log",
+  "fields": [
+    {
+      "fieldName": "userId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "encryptedUserid",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pointOfTime",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "AuthStatus",
+      "fieldValues": "Successs,Fail"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "AuthLog",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "live",
+      "otherEntityRelationshipName": "authLog",
+      "relationshipName": "live",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

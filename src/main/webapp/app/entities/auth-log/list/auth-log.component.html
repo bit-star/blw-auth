@@ -1,0 +1,138 @@
+<div>
+  <h2 id="page-heading" data-cy="AuthLogHeading">
+    <span jhiTranslate="blwAuthApp.authLog.home.title">Auth Logs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="blwAuthApp.authLog.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-auth-log"
+        [routerLink]="['/auth-log/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="blwAuthApp.authLog.home.createLabel"> 创建新 Auth Log </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="authLogs?.length === 0">
+    <span jhiTranslate="blwAuthApp.authLog.home.notFound">No Auth Logs found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="authLogs && authLogs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="userId">
+            <div class="d-flex">
+              <span jhiTranslate="blwAuthApp.authLog.userId">User Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="encryptedUserid">
+            <div class="d-flex">
+              <span jhiTranslate="blwAuthApp.authLog.encryptedUserid">Encrypted Userid</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="pointOfTime">
+            <div class="d-flex">
+              <span jhiTranslate="blwAuthApp.authLog.pointOfTime">Point Of Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <div class="d-flex">
+              <span jhiTranslate="blwAuthApp.authLog.status">Status</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="live.id">
+            <div class="d-flex">
+              <span jhiTranslate="blwAuthApp.authLog.live">Live</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let authLog of authLogs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/auth-log', authLog.id, 'view']">{{ authLog.id }}</a>
+          </td>
+          <td>{{ authLog.userId }}</td>
+          <td>{{ authLog.encryptedUserid }}</td>
+          <td>{{ authLog.pointOfTime | formatMediumDatetime }}</td>
+          <td jhiTranslate="{{ 'blwAuthApp.AuthStatus.' + authLog.status }}">{{ authLog.status }}</td>
+          <td>
+            <div *ngIf="authLog.live">
+              <a [routerLink]="['/live', authLog.live.id, 'view']">{{ authLog.live.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/auth-log', authLog.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">查看</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/auth-log', authLog.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">编辑</span>
+              </button>
+
+              <button type="submit" (click)="delete(authLog)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">删除</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="authLogs && authLogs.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>
