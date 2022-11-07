@@ -1,0 +1,28 @@
+{
+  "blwAuthApp": {
+    "authLog": {
+      "home": {
+        "title": "Auth Logs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "创建新 Auth Log",
+        "createOrEditLabel": "创建或编辑 Auth Log",
+        "notFound": "No Auth Logs found"
+      },
+      "created": "Auth Log {{ param }} 创建成功",
+      "updated": "Auth Log {{ param }} 更新成功",
+      "deleted": "Auth Log {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Auth Log {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Auth Log"
+      },
+      "id": "ID",
+      "userId": "User Id",
+      "encryptedUserid": "Encrypted Userid",
+      "pointOfTime": "Point Of Time",
+      "status": "Status",
+      "live": "Live"
+    }
+  }
+}

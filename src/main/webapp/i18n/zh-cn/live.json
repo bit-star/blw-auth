@@ -1,0 +1,28 @@
+{
+  "blwAuthApp": {
+    "live": {
+      "home": {
+        "title": "Lives",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "创建新 Live",
+        "createOrEditLabel": "创建或编辑 Live",
+        "notFound": "No Lives found"
+      },
+      "created": "Live {{ param }} 创建成功",
+      "updated": "Live {{ param }} 更新成功",
+      "deleted": "Live {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Live {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Live"
+      },
+      "id": "ID",
+      "name": "Name",
+      "polyvId": "Polyv Id",
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "authLog": "Auth Log"
+    }
+  }
+}
