@@ -1,0 +1,39 @@
+{
+  "applications": "*",
+  "changelogDate": "20221107054146",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "live",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "polyvId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "startTime",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "endTime",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Live",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "authLog",
+      "otherEntityRelationshipName": "live",
+      "relationshipName": "authLog",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}
