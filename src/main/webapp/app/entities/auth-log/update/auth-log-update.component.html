@@ -1,0 +1,84 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-auth-log-heading" data-cy="AuthLogCreateUpdateHeading" jhiTranslate="blwAuthApp.authLog.home.createOrEditLabel">
+        创建或编辑 Auth Log
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="blwAuthApp.authLog.userId" for="field_userId">User Id</label>
+          <input type="text" class="form-control" name="userId" id="field_userId" data-cy="userId" formControlName="userId" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="blwAuthApp.authLog.encryptedUserid" for="field_encryptedUserid">Encrypted Userid</label>
+          <input
+            type="text"
+            class="form-control"
+            name="encryptedUserid"
+            id="field_encryptedUserid"
+            data-cy="encryptedUserid"
+            formControlName="encryptedUserid"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="blwAuthApp.authLog.pointOfTime" for="field_pointOfTime">Point Of Time</label>
+          <div class="d-flex">
+            <input
+              id="field_pointOfTime"
+              data-cy="pointOfTime"
+              type="datetime-local"
+              class="form-control"
+              name="pointOfTime"
+              formControlName="pointOfTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="blwAuthApp.authLog.status" for="field_status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'blwAuthApp.AuthStatus.null' | translate }}</option>
+            <option *ngFor="let authStatus of authStatusValues" [value]="authStatus">
+              {{ 'blwAuthApp.AuthStatus.' + authStatus | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="blwAuthApp.authLog.live" for="field_live">Live</label>
+          <select class="form-control" id="field_live" data-cy="live" name="live" formControlName="live" [compareWith]="compareLive">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="liveOption" *ngFor="let liveOption of livesSharedCollection">{{ liveOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">取消</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">保存</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

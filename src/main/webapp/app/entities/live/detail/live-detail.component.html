@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="live">
+      <h2 data-cy="liveDetailsHeading"><span jhiTranslate="blwAuthApp.live.detail.title">Live</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ live.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="blwAuthApp.live.name">Name</span></dt>
+        <dd>
+          <span>{{ live.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="blwAuthApp.live.polyvId">Polyv Id</span></dt>
+        <dd>
+          <span>{{ live.polyvId }}</span>
+        </dd>
+        <dt><span jhiTranslate="blwAuthApp.live.startTime">Start Time</span></dt>
+        <dd>
+          <span>{{ live.startTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="blwAuthApp.live.endTime">End Time</span></dt>
+        <dd>
+          <span>{{ live.endTime | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">返回</span>
+      </button>
+
+      <button type="button" [routerLink]="['/live', live.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">编辑</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -81,6 +81,9 @@ public class CacheConfiguration {
             createCache(cm, com.kyanite.blw.domain.User.class.getName(), jcacheConfiguration);
             createCache(cm, com.kyanite.blw.domain.Authority.class.getName(), jcacheConfiguration);
             createCache(cm, com.kyanite.blw.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            createCache(cm, com.kyanite.blw.domain.Live.class.getName(), jcacheConfiguration);
+            createCache(cm, com.kyanite.blw.domain.Live.class.getName() + ".authLogs", jcacheConfiguration);
+            createCache(cm, com.kyanite.blw.domain.AuthLog.class.getName(), jcacheConfiguration);
             // jhipster-needle-redis-add-entry
         };
     }
